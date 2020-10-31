@@ -1,7 +1,11 @@
-<div *ngFor="let h of hospedes | async">
-    {{h.id}}: {{h.nome}}
-</div>
+<div class="container">
+    <app-novo-hospede-modal></app-novo-hospede-modal>
 
-<div *ngFor="let c of checkIns | async">
-    {{c.id}}: {{c.dataEntrada}}
+    <div *ngFor="let h of hospedes | async">
+        {{h.id}}: {{h.nome}}
+    </div>
+
+    <div *ngFor="let c of checkIns | async">
+        {{c.id}}: {{c.dataEntrada}}
+    </div>
 </div>

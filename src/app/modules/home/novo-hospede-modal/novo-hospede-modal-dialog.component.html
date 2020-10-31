@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Incluir Pessoa</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="hospedeForm">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome" formControlName="nome">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Documento</mat-label>
+        <input matInput placeholder="documento" formControlName="documento">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Telefone</mat-label>
+        <input matInput placeholder="telefone" formControlName="telefone">
+      </mat-form-field>
+    </p>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()" cdkFocusInitial>Cancelar</button>
+  <button mat-button (click)="salvarHospede()">Salvar</button>
+</mat-dialog-actions>
