@@ -15,6 +15,12 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@modules/*": [ "src/app/modules/*"],
+      "@data/*": ["src/app/data/*"]
+    },
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
   }
 }
