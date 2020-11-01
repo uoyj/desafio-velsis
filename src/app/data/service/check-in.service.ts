@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { CheckIn } from '../model/check-in';
 import { JsonApiService } from './json-api.service';
@@ -8,15 +8,19 @@ import { JsonApiService } from './json-api.service';
   providedIn: 'root'
 })
 export class CheckInService {
-
+  checkIns:CheckIn[] = [];
   constructor( private _jsonApi: JsonApiService ) { }
 
   getAll(): Observable<CheckIn[]>{
-    return this._jsonApi.get('/check-in');
+    this._jsonApi.get('/check-in').subscribe((response: CheckIn[]) => {
+      this.checkIns = response;
+    });
+    return of(this.checkIns);
   }
 
-  create(item:CheckIn){
-
+  create(item){
+    item.id = this.checkIns.length + 1;
+    this.checkIns.push(item);
   }
 
   remove(){

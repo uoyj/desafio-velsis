@@ -3,10 +3,12 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
+import moment from "moment";
+
+import { CheckIn } from '@data/model/check-in';
 import { Hospede } from '@data/model/hospede';
 import { CheckInService } from '@data/service/check-in.service';
 import { HospedeService } from '@data/service/hospede.service';
-
 
 @Component({
   selector: 'app-novo-check-in',
@@ -63,6 +65,22 @@ export class NovoCheckInComponent implements OnInit {
 
   displayAutoHospede(hospede: Hospede):string {
     return hospede.nome;
+  }
+
+  salvarCheckIn(){
+    let horaEntradaArray = this.checkInForm.value.horaEntrada.split(":");
+    let horaSaidaArray = this.checkInForm.value.horaSaida.split(":"); 
+
+    let checkIn = {
+      hospedeId: this.checkInForm.value.hospede.id,
+      adicionalVeiculo: this.checkInForm.value.adicionalVeiculo,
+      dataEntrada: moment(this.checkInForm.value.dataEntrada)
+                  .hours(horaEntradaArray[0]).minutes(horaEntradaArray[1]).toISOString(),
+      dataSaida: moment(this.checkInForm.value.dataSaida)
+                .hours(horaSaidaArray[0]).minutes(horaSaidaArray[1]).toISOString(),
+    };
+
+    this._checkIns.create(checkIn)
   }
 
 }
