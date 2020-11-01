@@ -21,9 +21,9 @@ export class NovoHospedeModalComponent implements OnInit {
       minWidth: '50vw',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    /* dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-    });
+    }); */
   }
 
 }

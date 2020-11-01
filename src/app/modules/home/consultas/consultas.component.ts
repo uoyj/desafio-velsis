@@ -35,17 +35,12 @@ export class ConsultasComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.hospedes.pipe(
-      map(lista => {
-        console.log(lista)
+    this.hospedes.subscribe(lista => {
         this.dataSource.data = lista;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-      })
-    ).subscribe(lista => {
-      console.log(lista)
-    });
-
+      }
+    );
   }
 
 }
