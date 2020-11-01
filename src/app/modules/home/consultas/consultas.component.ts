@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -10,8 +9,7 @@ import { CheckInService } from '@data/service/check-in.service';
 import { HospedeService } from '@data/service/hospede.service';
 import { MatSort } from '@angular/material/sort';
 
-
-
+import {ConfigsService} from '@data/service/configs.service';
 
 @Component({
   selector: 'app-consultas',
@@ -25,13 +23,14 @@ export class ConsultasComponent implements OnInit {
   dataSource = new MatTableDataSource<Hospede>([]);
   colunasAtivas: string[] = ['nome', 'documento'];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
     
 
   constructor( 
     private _hospedes: HospedeService,
     private _checkIns: CheckInService,
+    private _configs: ConfigsService,
   ) { }
 
   ngOnInit(): void {

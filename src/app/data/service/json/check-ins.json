@@ -3,7 +3,14 @@
         "id": 1,
         "hospedeId": 1,
         "dataEntrada": "2020-04-21T08:00:00",
-        "dataSaida": "2020-04-18T10:17:00",
+        "dataSaida": "2020-04-22T10:17:00",
+        "adicionalVeiculo": true
+    },
+    {
+        "id": 2,
+        "hospedeId": 1,
+        "dataEntrada": "2020-08-20T08:00:00",
+        "dataSaida": "2020-04-28T17:10:00",
         "adicionalVeiculo": true
     }
 ]
