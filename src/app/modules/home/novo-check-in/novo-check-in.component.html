@@ -1,0 +1,64 @@
+{{checkInForm.value | json}}
+<mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel [expanded]="true" (opened)="true" class="mb-3">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Novo Check-in
+            </mat-panel-title>           
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="checkInForm">
+            <div class="row">
+                <div class="col-sm">
+                    <mat-form-field appearance="outline" class="w-75">
+                        <mat-label>Data de entrada</mat-label>
+                        <input matInput [matDatepicker]="entradaPicker" formControlName="dataEntrada">
+                        <mat-datepicker-toggle matSuffix [for]="entradaPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #entradaPicker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>Horário</mat-label>
+                        <input matInput type="time" #entradaTime formControlName="horaEntrada">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm">
+                    <mat-form-field appearance="outline" class="w-75">
+                        <mat-label>Data de saída</mat-label>
+                        <input matInput [matDatepicker]="saidaPicker" formControlName="dataSaida">
+                        <mat-datepicker-toggle matSuffix [for]="saidaPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #saidaPicker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-25">
+                        <mat-label>Horário</mat-label>
+                        <input matInput type="time" #saidaTime formControlName="horaSaida">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <mat-form-field appearance="outline"  class="w-100 mb-3 mb-md-0">
+                        <input type="text"
+                               placeholder="Pessoa"
+                               aria-label="Pessoa"
+                               matInput
+                               formControlName="hospede"
+                               [matAutocomplete]="auto"
+                               (blur)="validarHospede()">
+                        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayAutoHospede">
+                          <mat-option *ngFor="let h of filteredHospedes | async" [value]="h">
+                            {{h.nome}}
+                          </mat-option>
+                        </mat-autocomplete>
+                        <mat-hint>Insira um nome ou número de documento, depois clique numa sugestão válida.</mat-hint>
+                      </mat-form-field>
+                      
+                </div>
+                <div class="col-sm d-flex">
+                    <div class="align-self-center pb-3">
+                        <mat-checkbox class="" formControlName="adicionalVeiculo">Possui veiculo</mat-checkbox>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </mat-expansion-panel>
+</mat-accordion>
