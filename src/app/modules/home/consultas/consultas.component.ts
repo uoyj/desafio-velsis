@@ -2,16 +2,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+
+import moment from "moment";
 
 import { CheckIn } from '@data/model/check-in';
 import { Hospede } from '@data/model/hospede';
 import { CheckInService } from '@data/service/check-in.service';
 import { HospedeService } from '@data/service/hospede.service';
-import { MatSort } from '@angular/material/sort';
 
 import {ConfigsService} from '@data/service/configs.service';
-
-import moment from "moment";
+import { UpdateHospedeModalComponent } from './update-hospede-modal/update-hospede-modal.component';
 
 
 @Component({
@@ -38,13 +40,14 @@ export class ConsultasComponent implements OnInit {
     private _hospedes: HospedeService,
     private _checkIns: CheckInService,
     private _configs: ConfigsService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.hospedes.subscribe(lista => {
         lista.map(item => {
           if(!this.gastos.get(item.id)) this.gastos.set(item.id, 0);
-          if(!this.permanencia.get(item.id)) this.gastos.set(item.id, false);
+          if(!this.permanencia.get(item.id)) this.permanencia.set(item.id, false);
         })
         this.dataSource.data = lista;
         this.dataSource.paginator = this.paginator;
@@ -116,5 +119,12 @@ export class ConsultasComponent implements OnInit {
 
     return soma;
   };
+
+  updateHospede(item: Hospede){
+    const dialogRef = this.dialog.open(UpdateHospedeModalComponent, {
+      minWidth: '50vw',
+      data: item
+    });
+  }
 
 }

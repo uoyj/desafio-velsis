@@ -27,12 +27,4 @@ export class CheckInService {
     return this.data.next(this.checkIns);
   }
 
-  remove(){
-
-  }
-
-  update(){
-
-  }
-
 }

@@ -8,7 +8,7 @@
 
         <div class="mat-elevation-z8">
             <div class="filtro-wrapper">
-                <label>Filtrar por:</label>
+                <div>Filtrar por:</div>
                 <mat-radio-group [(ngModel)]="filtro" (ngModelChange)="filtrar($event)" aria-label="Selecione uma opção" >
                     <mat-radio-button value="Presentes">Pessoas ainda presentes</mat-radio-button>
                     <mat-radio-button value="Deixaram">Pessoas que já deixaram o hotel</mat-radio-button>
@@ -34,7 +34,7 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="colunasAtivas"></tr>
-                <tr mat-row *matRowDef="let row; columns: colunasAtivas;"></tr>
+                <tr mat-row *matRowDef="let row; columns: colunasAtivas;" (click)="updateHospede(row)"></tr>
             </table>
             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </div>

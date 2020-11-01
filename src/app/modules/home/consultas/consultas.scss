@@ -7,3 +7,8 @@
 mat-radio-button{
     margin-left: 1.5rem;
 }
+
+tr.mat-row:hover{
+    cursor: pointer;
+    background-color: #e5e5e5;
+}

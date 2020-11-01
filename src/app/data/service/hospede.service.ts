@@ -28,11 +28,9 @@ export class HospedeService {
     return this.data.next(this.hospedes);
   }
 
-  remove(id: number){
-    
-  }
-
-  update(id: number){
-
+  update(item: Hospede){
+    let index = this.hospedes.findIndex(hospede => hospede.id == item.id);
+    this.hospedes[index] = item;
+    return this.data.next(this.hospedes);
   }
 }

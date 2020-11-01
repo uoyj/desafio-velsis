@@ -24,6 +24,7 @@ import { NovoHospedeModalDialogComponent } from './novo-hospede-modal/novo-hospe
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NovoCheckInComponent } from './novo-check-in/novo-check-in.component';
 import { ConsultasComponent } from './consultas/consultas.component';
+import { UpdateHospedeModalComponent } from './consultas/update-hospede-modal/update-hospede-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ConsultasComponent } from './consultas/consultas.component';
     NovoHospedeModalComponent,
     NovoHospedeModalDialogComponent,
     NovoCheckInComponent,
-    ConsultasComponent
+    ConsultasComponent,
+    UpdateHospedeModalComponent
   ],
   imports: [
     CommonModule,

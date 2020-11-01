@@ -17,7 +17,7 @@ import { HospedeService } from '@data/service/hospede.service';
 })
 export class NovoCheckInComponent implements OnInit {
   public checkInForm: FormGroup;
-  hospedesObs: BehaviorSubject<Hospede[]> = this._hospedes.getAll();
+  hospedesSubject: BehaviorSubject<Hospede[]> = this._hospedes.getAll();
   hospedes: Hospede[] = [];
   filteredHospedes: Observable<Hospede[]>;
 
@@ -28,7 +28,7 @@ export class NovoCheckInComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.hospedesObs.subscribe(lista => this.hospedes = lista);
+    this.hospedesSubject.subscribe(lista => this.hospedes = lista);
 
     this.checkInForm = this._formBuilder.group({
       hospede: ['', [Validators.required]],
@@ -83,7 +83,6 @@ export class NovoCheckInComponent implements OnInit {
     let saida = this.checkInForm.get('dataSaida').value;
     if (entrada){
       if( moment(entrada).isSame(moment(saida)) ) {
-        console.log(this.checkInForm.get('horaEntrada').value)
         return this.checkInForm.get('horaEntrada').value;
       }
       else return null;
