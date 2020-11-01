@@ -7,6 +7,15 @@
         </mat-expansion-panel-header>
 
         <div class="mat-elevation-z8">
+            <div class="filtro-wrapper">
+                <label>Filtrar por:</label>
+                <mat-radio-group [(ngModel)]="filtro" (ngModelChange)="filtrar($event)" aria-label="Selecione uma opção" >
+                    <mat-radio-button value="Presentes">Pessoas ainda presentes</mat-radio-button>
+                    <mat-radio-button value="Deixaram">Pessoas que já deixaram o hotel</mat-radio-button>
+                    <mat-radio-button value="Todos">Todos</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
             <table mat-table [dataSource]="dataSource" class=" w-100 mt-3">
 
                 <ng-container matColumnDef="nome">

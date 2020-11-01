@@ -23,13 +23,13 @@
                 <div class="col-sm">
                     <mat-form-field appearance="outline" class="w-75">
                         <mat-label>Data de saída</mat-label>
-                        <input matInput [matDatepicker]="saidaPicker" formControlName="dataSaida">
+                        <input matInput [min]="minSaida()" [matDatepicker]="saidaPicker" formControlName="dataSaida">
                         <mat-datepicker-toggle matSuffix [for]="saidaPicker"></mat-datepicker-toggle>
                         <mat-datepicker #saidaPicker></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="w-25">
                         <mat-label>Horário</mat-label>
-                        <input matInput type="time" #saidaTime formControlName="horaSaida">
+                        <input matInput [min]="minHoraSaida()" type="time" #saidaTime formControlName="horaSaida">
                     </mat-form-field>
                 </div>
             </div>

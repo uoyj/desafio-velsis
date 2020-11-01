@@ -13,17 +13,19 @@ import {ConfigsService} from '@data/service/configs.service';
 
 import moment from "moment";
 
+
 @Component({
   selector: 'app-consultas',
   templateUrl: './consultas.component.html',
-  styles: [
-  ]
+  styleUrls: ['./consultas.scss']
 })
 export class ConsultasComponent implements OnInit {
   hospedes: BehaviorSubject<Hospede[]> = this._hospedes.getAll();
   checkIns: BehaviorSubject<CheckIn[]> = this._checkIns.getAll();
   configs:any = {};
   gastos = new Map();
+  permanencia = new Map();
+  filtro:string = 'Todos';
 
   dataSource = new MatTableDataSource<Hospede>([]);
   colunasAtivas: string[] = ['nome', 'documento', 'gasto'];
@@ -42,6 +44,7 @@ export class ConsultasComponent implements OnInit {
     this.hospedes.subscribe(lista => {
         lista.map(item => {
           if(!this.gastos.get(item.id)) this.gastos.set(item.id, 0);
+          if(!this.permanencia.get(item.id)) this.gastos.set(item.id, false);
         })
         this.dataSource.data = lista;
         this.dataSource.paginator = this.paginator;
@@ -53,7 +56,8 @@ export class ConsultasComponent implements OnInit {
       this.configs = conf;
 
       this.checkIns.subscribe(lista => {
-        this._calcularGastos(lista);
+        this._parseCheckins(lista);
+        this.filtrar();
       });
     });
 
@@ -63,12 +67,24 @@ export class ConsultasComponent implements OnInit {
     return this.gastos.get(item.id);
   }
 
-  private _calcularGastos(lista: CheckIn[]){
+  filtrar(ev?){
+    this.hospedes.subscribe(lista => {
+      if(this.filtro == 'Todos') return this.dataSource.data = lista;
+      this.dataSource.data = lista.filter(hospede => {
+        if(this.filtro == 'Presentes') return (this.permanencia.get(hospede.id) == true)
+        if(this.filtro == 'Deixaram') return (this.permanencia.get(hospede.id) != true)
+      });
+    });
+  }
+
+  private _parseCheckins(lista: CheckIn[]){
     this.dataSource.data.forEach(hospede => {
       let checkIns = lista.filter(check => check.hospedeId == hospede.id);
       let soma = 0;
       checkIns.forEach(check => {
         soma += this._calcularGastoCheckIn(check);
+        if(moment(check.dataSaida).isSameOrAfter(moment()) &&
+        moment(check.dataEntrada).isSameOrBefore(moment()) ) this.permanencia.set(hospede.id, true);
       });
 
       this.gastos.set(hospede.id, soma);

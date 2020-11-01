@@ -71,6 +71,25 @@ export class NovoCheckInComponent implements OnInit {
     return  hospede ? hospede.nome : '';
   }
 
+  minSaida(){
+    let entrada = this.checkInForm.get('dataEntrada').value;
+    if (entrada){
+      return moment(entrada).toDate();
+    } else return null;
+  }
+
+  minHoraSaida(){
+    let entrada = this.checkInForm.get('dataEntrada').value;
+    let saida = this.checkInForm.get('dataSaida').value;
+    if (entrada){
+      if( moment(entrada).isSame(moment(saida)) ) {
+        console.log(this.checkInForm.get('horaEntrada').value)
+        return this.checkInForm.get('horaEntrada').value;
+      }
+      else return null;
+    } else return null;
+  }
+
   salvarCheckIn(){
     if(!this._hospedeValido()) return;
 

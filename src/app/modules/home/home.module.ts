@@ -15,12 +15,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './page/home.component';
 import { NovoHospedeModalComponent } from './novo-hospede-modal/novo-hospede-modal.component';
 import { NovoHospedeModalDialogComponent } from './novo-hospede-modal/novo-hospede-modal-dialog.component';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NovoCheckInComponent } from './novo-check-in/novo-check-in.component';
 import { ConsultasComponent } from './consultas/consultas.component';
 
@@ -47,6 +48,8 @@ import { ConsultasComponent } from './consultas/consultas.component';
     MatCheckboxModule,
     MatTableModule,
     MatSortModule,
+    MatRadioModule,
+    FormsModule,
     MatPaginatorModule,
     ReactiveFormsModule
   ],
