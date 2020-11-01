@@ -58,9 +58,13 @@ export class NovoCheckInComponent implements OnInit {
 
   validarHospede(){
     setTimeout(()=> {
-      let hospede = this.checkInForm.get('hospede');
-      if(!(hospede.value && hospede.value.id)) hospede.setValue('');
-     }, 200);
+      if (!this._hospedeValido()) this.checkInForm.get('hospede').setValue('')
+     }, 50);
+  }
+
+  private _hospedeValido(){
+    let hospede = this.checkInForm.get('hospede');
+    return (hospede.value && hospede.value.id);
   }
 
   displayAutoHospede(hospede: Hospede):string {
@@ -68,6 +72,8 @@ export class NovoCheckInComponent implements OnInit {
   }
 
   salvarCheckIn(){
+    if(!this._hospedeValido()) return;
+
     let horaEntradaArray = this.checkInForm.value.horaEntrada.split(":");
     let horaSaidaArray = this.checkInForm.value.horaSaida.split(":"); 
 
@@ -85,7 +91,7 @@ export class NovoCheckInComponent implements OnInit {
     for (let name in this.checkInForm.controls) {
       this.checkInForm.controls[name].setErrors(null);
     }
- 
+
   }
 
 }

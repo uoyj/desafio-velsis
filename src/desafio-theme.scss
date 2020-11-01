@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$desafio-primary: mat-palette($mat-blue, A700);
+$desafio-accent:  mat-palette($mat-deep-orange, A200, A100, A400);
+$desafio-warn:    mat-palette($mat-red);
+
+$desafio-theme: mat-light-theme((
+  color: (
+    primary: $desafio-primary,
+    accent: $desafio-accent,
+    warn: $desafio-warn,  
+  )
+));
+
+@include angular-material-theme($desafio-theme);

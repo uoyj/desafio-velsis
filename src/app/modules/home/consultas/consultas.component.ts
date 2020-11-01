@@ -53,7 +53,6 @@ export class ConsultasComponent implements OnInit {
       this.configs = conf;
 
       this.checkIns.subscribe(lista => {
-        console.log(lista);
         this._calcularGastos(lista);
       });
     });
@@ -81,10 +80,11 @@ export class ConsultasComponent implements OnInit {
     let mEntrada  = moment(check.dataEntrada);
     let mSaida  = moment(check.dataSaida);
     let dias = mSaida.diff(mEntrada, 'days');
-    
-    if(mSaida.hours() < this.configs.limiteCheckoutHora) dias -= 1;
-    else if (mSaida.hours() == this.configs.limiteCheckoutHora 
-      && mSaida.minutes() < this.configs.limiteCheckoutMinuto) dias -=1;
+    let mControle = mSaida.clone()
+      .hours(this.configs.limiteCheckoutHora).minutes(this.configs.limiteCheckoutMinuto);
+  
+    if(dias < 1) dias = 1;
+    if(mSaida.isSameOrAfter(mControle)) dias += 1;
 
     while(dias > 0){
       if(mEntrada.isoWeekday() !== 6 && mEntrada.isoWeekday() !== 7){

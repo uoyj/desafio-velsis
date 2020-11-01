@@ -5,3 +5,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+@import 'desafio-theme.scss';
+
+.navbar.navbar-dark.bg-primary{
+    background-color: #2962ff!important;
+}

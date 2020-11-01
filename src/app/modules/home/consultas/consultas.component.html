@@ -32,11 +32,3 @@
 
     </mat-expansion-panel>
 </mat-accordion>
-
-<div *ngFor="let h of hospedes | async">
-    {{h.id}}: {{h.nome}} - {{h.documento}}
-</div>
-
-<div *ngFor="let c of checkIns | async">
-    {{c.id}}: {{c.dataEntrada}}
-</div>
