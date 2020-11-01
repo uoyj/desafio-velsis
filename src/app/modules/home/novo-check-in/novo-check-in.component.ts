@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -20,7 +20,7 @@ export class NovoCheckInComponent implements OnInit {
   hospedesObs: BehaviorSubject<Hospede[]> = this._hospedes.getAll();
   hospedes: Hospede[] = [];
   filteredHospedes: Observable<Hospede[]>;
-  
+
   constructor(
     private _formBuilder: FormBuilder,
     private _checkIns: CheckInService,
@@ -42,7 +42,7 @@ export class NovoCheckInComponent implements OnInit {
     this.filteredHospedes = this.checkInForm.get('hospede').valueChanges
       .pipe(
         startWith(''),
-        map(value => typeof value === 'string' ? value : value.nome),
+        map(value => value ? (typeof value === 'string' ? value : value.nome) : ''),
         map(input => input ? this._filterHospedes(input) : this.hospedes.slice())
       );
   }
@@ -64,7 +64,7 @@ export class NovoCheckInComponent implements OnInit {
   }
 
   displayAutoHospede(hospede: Hospede):string {
-    return hospede.nome;
+    return  hospede ? hospede.nome : '';
   }
 
   salvarCheckIn(){
@@ -82,6 +82,10 @@ export class NovoCheckInComponent implements OnInit {
 
     this._checkIns.create(checkIn);
     this.checkInForm.reset();
+    for (let name in this.checkInForm.controls) {
+      this.checkInForm.controls[name].setErrors(null);
+    }
+ 
   }
 
 }

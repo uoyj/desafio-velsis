@@ -1,6 +1,7 @@
 <h2 mat-dialog-title>Incluir Pessoa</h2>
+<form #form="ngForm" [formGroup]="hospedeForm" (ngSubmit)="salvarHospede()">
 <mat-dialog-content class="mat-typography">
-  <form [formGroup]="hospedeForm">
+  
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Nome</mat-label>
@@ -19,9 +20,9 @@
         <input matInput placeholder="telefone" formControlName="telefone">
       </mat-form-field>
     </p>
-  </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button (click)="cancelar()" cdkFocusInitial>Cancelar</button>
-  <button mat-button (click)="salvarHospede()">Salvar</button>
+  <button mat-button  type="submit" [disabled]="hospedeForm.invalid">Salvar</button>
 </mat-dialog-actions>
+</form>

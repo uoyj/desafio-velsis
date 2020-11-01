@@ -1,0 +1,8 @@
+{
+    "diaria": 150,
+    "diariaFDS": 210,
+    "vaga": 15,
+    "vagaFDS": 20,
+    "limiteCheckoutHora": 16,
+    "limiteCheckoutMinuto": 30
+}

@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 
 import checkIns from './json/check-ins.json';
 import hospedes from './json/hospedes.json';
+import configs from './json/configs.json';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,8 @@ export class JsonApiService {
         return of(checkIns);
       case '/hospede':
         return of(hospedes)
+      case '/configs':
+        return of(configs)
     }
   }
   

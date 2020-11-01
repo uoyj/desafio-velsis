@@ -10,7 +10,28 @@
         "id": 2,
         "hospedeId": 1,
         "dataEntrada": "2020-08-20T08:00:00",
-        "dataSaida": "2020-04-28T17:10:00",
+        "dataSaida": "2020-08-28T17:10:00",
         "adicionalVeiculo": true
+    },
+    {
+        "id": 3,
+        "hospedeId": 2,
+        "dataEntrada": "2020-10-30T08:00:00",
+        "dataSaida": "2020-11-01T17:10:00",
+        "adicionalVeiculo": true
+    },
+    {
+        "id": 4,
+        "hospedeId": 3,
+        "dataEntrada": "2020-10-30T08:00:00",
+        "dataSaida": "2020-11-01T17:10:00",
+        "adicionalVeiculo": false
+    },
+    {
+        "id": 5,
+        "hospedeId": 4,
+        "dataEntrada": "2020-10-30T08:00:00",
+        "dataSaida": "2020-11-01T16:10:00",
+        "adicionalVeiculo": false
     }
 ]

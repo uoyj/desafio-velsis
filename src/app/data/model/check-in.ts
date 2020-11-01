@@ -2,7 +2,7 @@ import { Hospede } from './hospede'
 
 export interface CheckIn{
     id: number,
-    hospede: Hospede,
+    hospedeId: number,
     dataEntrada: string,
     dataSaida: string,
     adicionalVeiculo: boolean

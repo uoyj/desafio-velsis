@@ -27,6 +27,8 @@ export class NovoHospedeModalDialogComponent implements OnInit {
 
   salvarHospede(){
     this._hospedes.create(this.hospedeForm.value)
+    this.hospedeForm.reset();
+    this.dialogRef.close();
   }
   
   cancelar(){
