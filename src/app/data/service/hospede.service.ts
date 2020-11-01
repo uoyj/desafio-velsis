@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { Hospede } from '../model/hospede';
 import { JsonApiService } from './json-api.service';
@@ -10,19 +10,22 @@ import { JsonApiService } from './json-api.service';
 export class HospedeService {
 
   hospedes:Hospede[] = [];
+  data:BehaviorSubject<Hospede[]> = new BehaviorSubject(this.hospedes)
 
   constructor( private _jsonApi: JsonApiService ) { }
 
-  getAll(): Observable<Hospede[]>{
+  getAll(): BehaviorSubject<Hospede[]>{
     this._jsonApi.get('/hospede').subscribe((response: Hospede[]) => {
       this.hospedes = response;
+      this.data.next(this.hospedes);
     });
-    return of(this.hospedes);
+    return this.data;
   }
 
   create(item:Hospede){
     item.id = this.hospedes.length + 1;
     this.hospedes.push(item);
+    return this.data.next(this.hospedes);
   }
 
   remove(id: number){

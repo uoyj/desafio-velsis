@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
 import moment from "moment";
 
-import { CheckIn } from '@data/model/check-in';
+//import { CheckIn } from '@data/model/check-in';
 import { Hospede } from '@data/model/hospede';
 import { CheckInService } from '@data/service/check-in.service';
 import { HospedeService } from '@data/service/hospede.service';
@@ -17,7 +17,7 @@ import { HospedeService } from '@data/service/hospede.service';
 })
 export class NovoCheckInComponent implements OnInit {
   public checkInForm: FormGroup;
-  hospedesObs: Observable<Hospede[]> = this._hospedes.getAll();
+  hospedesObs: BehaviorSubject<Hospede[]> = this._hospedes.getAll();
   hospedes: Hospede[] = [];
   filteredHospedes: Observable<Hospede[]>;
   
@@ -80,7 +80,8 @@ export class NovoCheckInComponent implements OnInit {
                 .hours(horaSaidaArray[0]).minutes(horaSaidaArray[1]).toISOString(),
     };
 
-    this._checkIns.create(checkIn)
+    this._checkIns.create(checkIn);
+    this.checkInForm.reset();
   }
 
 }

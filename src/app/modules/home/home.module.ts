@@ -9,8 +9,12 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './page/home.component';
@@ -18,14 +22,15 @@ import { NovoHospedeModalComponent } from './novo-hospede-modal/novo-hospede-mod
 import { NovoHospedeModalDialogComponent } from './novo-hospede-modal/novo-hospede-modal-dialog.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { NovoCheckInComponent } from './novo-check-in/novo-check-in.component';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ConsultasComponent } from './consultas/consultas.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     NovoHospedeModalComponent,
     NovoHospedeModalDialogComponent,
-    NovoCheckInComponent
+    NovoCheckInComponent,
+    ConsultasComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +45,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatMomentDateModule,
     MatAutocompleteModule,
     MatCheckboxModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     ReactiveFormsModule
   ],
   providers: [
